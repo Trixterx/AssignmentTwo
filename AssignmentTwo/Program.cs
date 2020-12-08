@@ -23,7 +23,6 @@ namespace AssignmentTwo
         {
             LogIn();
             Menu();
-
             Console.ReadKey();
         }
 
