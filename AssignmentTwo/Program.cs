@@ -156,13 +156,15 @@ namespace AssignmentTwo
         }
         private static void RemoveMember()
         {
+            int counter = 1;
             int input;
+            foreach (var classMate in listOfClassMates)
+            {
+                Console.WriteLine($"{counter}.{classMate.Name}");
+                counter++;
+            }
             Console.WriteLine("Who do you wanna remove?");
             input = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i < listOfClassMates.Count; i++)
-            {
-               Console.WriteLine($"{i + 1}. {listOfClassMates[i].Name}");
-            }
             listOfClassMates.RemoveAt(input-1);
             Menu();
         }
