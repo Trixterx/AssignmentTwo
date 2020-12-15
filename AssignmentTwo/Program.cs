@@ -149,7 +149,7 @@ namespace AssignmentTwo
             int counter = 1;
             foreach (var classMate in listOfClassMates)
             {
-               Console.WriteLine($"{counter}.{classMate.Name}\n  Programmerings driv: {classMate.ProgrammingDrive}");
+               Console.WriteLine($"{counter}.{classMate.Name}\n  Programming Drive: {classMate.ProgrammingDrive}");
                 counter++;
             }
             Menu();
