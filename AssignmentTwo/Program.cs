@@ -88,6 +88,7 @@ namespace AssignmentTwo
             CreateMembers();
             Menu();
         }
+
         private static void Menu()
         {
             string input = "";
