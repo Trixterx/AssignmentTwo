@@ -5,69 +5,25 @@ using System.Diagnostics.Tracing;
 
 namespace AssignmentTwo
 {
-
-    // Pinkod vid start, namn på bassgrupp == password. Om fel kod == felmeddelande.
-    // Meny med olika val.
-    // Lista alla deltagare och använd komma , som separatör.
-    // 10 detaljer om varje medlem så som fav mat eller band.
-    // Största driv till programmering.
-    // Möjlighet att ta bort en person.
-    
-    class ClassMate
-    {
-        private string name;
-        private int age;
-        private int length;
-        private string adress;
-        private string hobby;
-        private string favFood;
-        private string favDrink;
-        private string favBand;
-        private int nrChildren;
-        private string programmingDrive;
-
-        public ClassMate()
-        {
-
-        }
-
-        public ClassMate(string name, int age, int length, string adress, string hobby, string favFood, string favDrink, string favBand, int nrChildren, string programmingDrive)
-        {
-            this.name = name;
-            this.age = age;
-            this.length = length;
-            this.adress = adress;
-            this.hobby = hobby;
-            this.favFood = favFood;
-            this.favDrink = favDrink;
-            this.favBand = favBand;
-            this.nrChildren = nrChildren;
-            this.programmingDrive = programmingDrive;
-        }
-
-        public string Name { get => name; set => name = value; }
-        public int Age { get => age; set => age = value; }
-        public int Length { get => length; set => length = value; }
-        public string Adress { get => adress; set => adress = value; }
-        public string Hobby { get => hobby; set => hobby = value; }
-        public string FavFood { get => favFood; set => favFood = value; }
-        public string FavDrink { get => favDrink; set => favDrink = value; }
-        public string FavBand { get => favBand; set => favBand = value; }
-        public int NrChildren { get => nrChildren; set => nrChildren = value; }
-        public string ProgrammingDrive { get => programmingDrive; set => programmingDrive = value; }
-    }
+    // Program for my classmates. Starts with a login with password. If password is correct you get sent to the menu.
+    // From the menu you can list all members, display member details, display members drive to programming and finally remove a member if you'd like to.
+    // My code kind of explains itself and really has no needs for comments. As I have carefully chosen the names of everything wisely.
 
     class Program
     {
-        private static List<ClassMate> listOfClassMates = new List<ClassMate>();
 
         static void Main(string[] args)
         {
-            LogIn();
+            RunProgram.LogIn();
             Console.ReadKey();
         }
+    }
 
-        private static void LogIn()
+    class RunProgram
+    {
+        private static List<ClassMate> listOfClassMates = new List<ClassMate>();
+        
+        public static void LogIn()
         {
             string input;
             bool wrongInput = true;
@@ -76,7 +32,7 @@ namespace AssignmentTwo
             do
             {
                 input = Console.ReadLine();
-                if (input.Trim().ToLower() == "norr")
+                if (input.Trim().ToLower() == "norrlänningarna")
                 {
                     wrongInput = false;
                 }
@@ -135,6 +91,7 @@ namespace AssignmentTwo
             }
             Menu();
         }
+
         private static void DisplayMemberDetails()
         {
             int counter = 1;
@@ -145,30 +102,33 @@ namespace AssignmentTwo
             }
             Menu();
         }
+
         private static void DisplayMembersDriveToProgramming()
         {
             int counter = 1;
             foreach (var classMate in listOfClassMates)
             {
-               Console.WriteLine($"{counter}.{classMate.Name}\n  Programming Drive: {classMate.ProgrammingDrive}");
+                Console.WriteLine($"{counter}.{classMate.Name}\n  Programming Drive: {classMate.ProgrammingDrive}");
                 counter++;
             }
             Menu();
         }
+
         private static void RemoveMember()
         {
             int counter = 1;
             int input;
+            Console.WriteLine("Who do you wanna remove?");
             foreach (var classMate in listOfClassMates)
             {
                 Console.WriteLine($"{counter}.{classMate.Name}");
                 counter++;
             }
-            Console.WriteLine("Who do you wanna remove?");
             input = Convert.ToInt32(Console.ReadLine());
-            listOfClassMates.RemoveAt(input-1);
+            listOfClassMates.RemoveAt(input - 1);
             Menu();
         }
+
         private static void CreateMembers()
         {
             listOfClassMates.Add(new ClassMate { Name = "Dennis Lindquist", Age = 32, Length = 182, Adress = "Älvdalen", Hobby = "Musik/Gitarr", FavFood = "Friterad kyckling", FavDrink = "Öl", FavBand = "Metallica", NrChildren = 1, ProgrammingDrive = "Att får skapa och kunna vara kreativ. Men även att få göra ett byte av karriär." });
@@ -182,5 +142,48 @@ namespace AssignmentTwo
             listOfClassMates.Add(new ClassMate { Name = "Nicklas Eriksson", Age = 26, Length = 175, Adress = "Umeå", Hobby = "Skidor, cykel, simma, springa, fjällvandring, klättring och dataspel", FavFood = "Gröt med jordnötssmör", FavDrink = "Whiskey", FavBand = "Falling in Reverse och Self Deception", NrChildren = 0, ProgrammingDrive = "Drivet kommer från att man får vara kreativ och en problemlösare på samma gång. Sen så drivs man såklart av att få testa på en annan karriär än den man har haft tidigare." });
             listOfClassMates.Add(new ClassMate { Name = "Josefine Rönnqvist", Age = 34, Length = 164, Adress = "Gideå", Hobby = "Sy, pussla, umgås", FavFood = "Frukt", FavDrink = "Vatten", FavBand = "Halsbandet", NrChildren = 2, ProgrammingDrive = "Personlig utveckling och karriärbyte." });
         }
+    }
+
+    class ClassMate
+    {
+        private string name;
+        private int age;
+        private int length;
+        private string adress;
+        private string hobby;
+        private string favFood;
+        private string favDrink;
+        private string favBand;
+        private int nrChildren;
+        private string programmingDrive;
+
+        public ClassMate()
+        {
+        }
+
+        public ClassMate(string name, int age, int length, string adress, string hobby, string favFood, string favDrink, string favBand, int nrChildren, string programmingDrive)
+        {
+            this.name = name;
+            this.age = age;
+            this.length = length;
+            this.adress = adress;
+            this.hobby = hobby;
+            this.favFood = favFood;
+            this.favDrink = favDrink;
+            this.favBand = favBand;
+            this.nrChildren = nrChildren;
+            this.programmingDrive = programmingDrive;
+        }
+
+        public string Name { get => name; set => name = value; }
+        public int Age { get => age; set => age = value; }
+        public int Length { get => length; set => length = value; }
+        public string Adress { get => adress; set => adress = value; }
+        public string Hobby { get => hobby; set => hobby = value; }
+        public string FavFood { get => favFood; set => favFood = value; }
+        public string FavDrink { get => favDrink; set => favDrink = value; }
+        public string FavBand { get => favBand; set => favBand = value; }
+        public int NrChildren { get => nrChildren; set => nrChildren = value; }
+        public string ProgrammingDrive { get => programmingDrive; set => programmingDrive = value; }
     }
 }
